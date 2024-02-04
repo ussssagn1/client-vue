@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  background: #3b3b3b;
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+}
+.container {
+  max-width: 1560px;
+  margin: 0 auto;
+  height: 100vh;
+  background: #e3e3e3;
+
+  box-shadow: 1px 1px 7px -6px rgba(217,217,217,1);
+  -webkit-box-shadow: 1px 1px 7px -6px rgba(217,217,217,1);
+  -moz-box-shadow: 1px 1px 7px -6px rgba(217,217,217,1);
+}
