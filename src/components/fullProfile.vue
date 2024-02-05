@@ -8,6 +8,7 @@ import { useClientStore } from "../store/clientStore.js";
 
 const addresNew = ref('');
 const phoneNum = ref();
+const save = ref(false)
 
 const props = defineProps({
   id: Number,
@@ -31,6 +32,7 @@ const saveChanges = async () => {
   };
 
   await clientStore.updateClientData(id.value, newData);
+  save.value = true;
 };
 
 watch(() => props.visible, (newValue) => {
@@ -49,6 +51,7 @@ watch(() => props.visible, (newValue) => {
           <span class="font-bold white-space-nowrap">Адресс: {{props.address}}</span>
           <span class="font-bold white-space-nowrap">Номер телефона: {{props.phone_num}}</span>
         </div>
+        <span v-if="save" class="text-green-600">Данные перезаписаны нажмите Cancel что бы выйти</span>
       </div>
     </template>
     <span class="p-text-secondary block mb-5">Обновить информацию</span>
@@ -60,6 +63,7 @@ watch(() => props.visible, (newValue) => {
       <label for="phone" class="font-semibold w-6rem">Номер теле фона</label>
       <InputText v-model="phoneNum" id="phone" placeholder="Введите номер телефона" class="flex-auto bg-gray-300 p-1" autocomplete="off" />
     </div>
+
     <template #footer class="flex gap-10">
       <Button class="bg-gray-400 p-2" type="button" label="Cancel" severity="secondary" @click="isVisible = false" />
       <Button class="bg-gray-400 p-2" label="Save" outlined @click="saveChanges" autofocus />

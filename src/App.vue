@@ -71,31 +71,31 @@ watch(() => clientStore.clients, (newClients) => {
 
 <template>
   <div class="container">
-    <main class="main">
+    <main class="main p-3">
       <Sidebar v-model:visible="isVisibleSidebar" header="Sidebar" position="right">
         <form @submit.prevent="addClient" class="sidebar">
-          <div class="p-field">
+          <div class="p-field flex flex-col">
             <label for="name">Имя</label>
-            <InputText v-model.trim="newClient.first_name" type="text" id="name" name="name" :class="{ 'p-invalid': !v$.first_name.required && v$.first_name.$pending }" />
+            <InputText class="bg-gray-200 p-2" v-model.trim="newClient.first_name" type="text" id="name" name="name" :class="{ 'p-invalid': !v$.first_name.required && v$.first_name.$pending }" />
             <span v-if="!v$.first_name.required">Введите имя.</span>
           </div>
-          <div class="p-field">
+          <div class="p-field flex flex-col">
             <label for="last_name">Фамилия</label>
-            <InputText v-model.trim="newClient.last_name" type="text" id="last_name" name="last_name" :class="{ 'p-invalid': !v$.last_name.required && v$.last_name.$pending, 'p-dirty': v$.last_name.$model }" />
+            <InputText class="bg-gray-200 p-2" v-model.trim="newClient.last_name" type="text" id="last_name" name="last_name" :class="{ 'p-invalid': !v$.last_name.required && v$.last_name.$pending, 'p-dirty': v$.last_name.$model }" />
             <span v-if="!v$.last_name.required">Введите фамилию.</span>
           </div>
-          <div class="p-field">
+          <div class="p-field flex flex-col">
             <label for="email">Почта</label>
-            <InputText v-model.trim="newClient.email" type="text" id="email" name="email" :class="{ 'p-invalid': (!v$.email.required || !v$.email.email) && v$.email.$pending, 'p-dirty': v$.email.$model }" />
+            <InputText class="bg-gray-200 p-2" v-model.trim="newClient.email" type="text" id="email" name="email" :class="{ 'p-invalid': (!v$.email.required || !v$.email.email) && v$.email.$pending, 'p-dirty': v$.email.$model }" />
             <span v-if="!v$.email.required">Введите email.</span>
             <span v-else-if="!v$.email.email">Введите корректный email.</span>
           </div>
-          <button type="submit" :disabled="v$.$pending">Добавить клиента</button>
+          <button class="bg-gray-400 p-2 text-white font-bold rounded-md" type="submit" :disabled="v$.$pending">Добавить клиента</button>
         </form>
       </Sidebar>
-      <button class="sidebar-btn" @click="isVisibleSidebar = true">Click</button>
-      <label for="nameFilter">Фильтр по имени:</label>
-      <input v-model.trim="clientStore.nameFilter" type="text" id="nameFilter" />
+      <button class="sidebar-btn bg-gray-400 text-white font-bold p-2 rounded-md" @click="isVisibleSidebar = true">Menu</button>
+      <label for="nameFilter" class="font-bold mr-5">Фильтр по имени:</label>
+      <input v-model.trim="clientStore.nameFilter" type="text" id="nameFilter" class="p-2 rounded-sm"/>
       <ul class="cards">
         <Client
             v-for="client in clientStore.filteredClients"

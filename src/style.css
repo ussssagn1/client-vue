@@ -20,3 +20,7 @@ ul {
   -webkit-box-shadow: 1px 1px 7px -6px rgba(217,217,217,1);
   -moz-box-shadow: 1px 1px 7px -6px rgba(217,217,217,1);
 }
+
+.p-dialog-header-icon  {
+  display: none !important;
+}
